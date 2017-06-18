@@ -5,6 +5,7 @@ const tickerInterval = 300000
 angular.module('app').controller('FooterCtrl', function ($rootScope, $scope, $state) {
     var $ctrl = this
 
+    $ctrl.repo = 'https://github.com/whitesunset/my_crypto_balance'
     $ctrl.storage = $rootScope.storage
     $ctrl.tickerCounter = tickerInterval
 
