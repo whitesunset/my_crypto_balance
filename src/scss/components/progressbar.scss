@@ -1,0 +1,13 @@
+.progress{
+  height: 30px;
+  border-radius: 2px;
+
+  span{
+    color: #080808;
+    width: 100%;
+    text-align: center;
+    left: 0;
+    top: 50%;
+    transform: translate(0,-50%);
+  }
+}

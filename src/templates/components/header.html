@@ -1,0 +1,53 @@
+<div class="header" ng-controller="HeaderCtrl as $ctrl">
+    <div class="container">
+        <div class="app-header">
+            <h3>
+                <img src="img/bitcoin.svg" alt="Bitcoin">
+                My Crypto Balance
+            </h3>
+            <div class="progress" ng-if="$ctrl.storage.settings.goal">
+                <div class="progress-bar progress-bar-success"
+                     role="progressbar"
+                     style="width: {{$ctrl.getPercent('goal_limit')}}%;">
+                </div>
+                <span>
+            {{$ctrl.getPercent('goal_limit')}}%
+            of
+            {{$ctrl.storage.settings.goal_limit.toLocaleString()}}
+            {{$ctrl.storage.settings.currency}}
+        </span>
+            </div>
+            <div class="progress" ng-if="$ctrl.storage.settings.subgoal">
+                <div class="progress-bar progress-bar-info"
+                     role="progressbar"
+                     style="width: {{$ctrl.getPercent('subgoal_limit')}}%;">
+                </div>
+                <span>
+            {{$ctrl.getPercent('subgoal_limit')}}%
+            of
+            {{$ctrl.storage.settings.subgoal_limit.toLocaleString()}}
+            {{$ctrl.storage.settings.currency}}
+        </span>
+            </div>
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li class="active">
+                        <button class="btn btn-sm btn-default"
+                                ng-click="$ctrl.addCoin()"
+                                title="Track new coin">New Saving</button>
+                        <button class="btn btn-sm btn-default btn-icon"
+                                ng-click="$ctrl.openSettings()"
+                                title="Settings">
+                            <span class="icon-settings-streamline-1"></span>
+                        </button>
+                        <button class="btn btn-sm btn-default btn-icon"
+                                ng-click="$ctrl.logout()"
+                                title="Logout">
+                            <span class="icon-logout"></span>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

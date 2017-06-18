@@ -1,0 +1,14 @@
+<div class="login" ng-controller="LoginCtrl as $ctrl">
+    <img src="img/wallet.svg" alt="">
+    <form ng-submit="$ctrl.login()">
+        <input required
+               autofocus
+               type="password"
+               ng-model="$ctrl.passphrase"
+               class="form-control"
+               placeholder="Enter passphrase">
+        <input type="submit"
+               class="btn btn-primary btn-block"
+               value="Submit">
+    </form>
+</div>

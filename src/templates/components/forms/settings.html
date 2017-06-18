@@ -1,0 +1,89 @@
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Settings</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-8">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"
+                                           ng-model="settings.goal"/>
+                                    Enable Main Goal
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="settings.goal">
+                        <label class="col-sm-4 control-label" for="settings_goal">Main Goal</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <input class="form-control input-sm"
+                                       id="settings_goal_limit"
+                                       ng-model="settings.goal_limit"
+                                       type="text"
+                                       placeholder="For example: 100 000"/>
+                                <span class="input-group-addon">
+                                    {{settings.currency}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-8">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"
+                                           ng-model="settings.subgoal"/>
+                                    Enable Sub Goal
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="settings.subgoal">
+                        <label class="col-sm-4 control-label" for="settings_goal">Sub Goal</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <input class="form-control input-sm"
+                                       id="settings_subgoal_limit"
+                                       ng-model="settings.subgoal_limit"
+                                       type="text"
+                                       placeholder="For example: 10 000"/>
+                                <span class="input-group-addon">
+                                            {{settings.currency}}
+                                        </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="settings_currency">Default Currency</label>
+                        <div class="col-sm-8">
+                            <select class="form-control input-sm"
+                                    id="settings_currency"
+                                    ng-model="settings.currency">
+                                <option ng-repeat="currency in currencies" value="{{currency}}">
+                                    {{currency}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button"
+                        class="btn btn-primary"
+                        data-dismiss="modal"
+                        ng-click="save()">
+                    Save
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

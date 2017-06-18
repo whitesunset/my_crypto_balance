@@ -1,0 +1,104 @@
+<div ng-controller="DashboardCtrl as $ctrl">
+    <div ng-if="$ctrl.loaded">
+        <!-- Header -->
+        <app-header></app-header>
+
+        <div class="container">
+            <div class="panel panel-default panel-table">
+                <div class="panel-body">
+                    <!-- Summary -->
+                    <div class="summary" ng-show="$ctrl.storage.coins.length > 0">
+                        <span>
+                            {{$ctrl.getTotal('btc')}}
+                            <small>BTC</small>
+                        </span>
+                        <span>
+                            {{('' + $ctrl.getTotal($ctrl.storage.settings.currency)).toLocaleString()}}
+                            <small>{{$ctrl.storage.settings.currency}}</small>
+                        </span>
+                    </div>
+                    <!-- Data table -->
+                    <table class="table table-striped" ng-show="$ctrl.storage.coins.length > 0">
+                        <thead>
+                        <tr>
+                            <th class="index">#</th>
+                            <th class="symbol">Coin</th>
+                            <th class="count text-center">Amount</th>
+                            <th class="price_btc text-center">BTC Price</th>
+                            <th class="sum_btc text-center">BTC Total</th>
+                            <th class="sum_currency text-center">{{$ctrl.storage.settings.currency}} Total</th>
+                            <th class="actions"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="coin in $ctrl.storage.coins track by $index">
+                            <td colspan="7" class="td-wrapper">
+                                <table class="inner-table">
+                                    <tr>
+                                        <td class="index">{{$index + 1}}</td>
+                                        <td class="symbol">
+                                        <span ng-if="coin.id">
+                                            <img ng-src="https://files.coinmarketcap.com/static/img/coins/16x16/{{coin.id}}.png"
+                                                 width="16"
+                                                 height="16"
+                                                 alt="{{coin.id | capitalize}}">
+                                        </span>
+                                            {{coin.symbol}}
+                                            <span ng-if="coin.note" class="note">({{coin.note}})</span>
+                                        </td>
+                                        <td class="count text-center">
+                                            {{coin.amount}}
+                                        </td>
+                                        <td class="price_btc text-center"
+                                            ng-class="{green: $ctrl.getChange(coin.symbol), red: !$ctrl.getChange(coin.symbol)}">
+                                            {{$ctrl.price(coin.symbol, 'btc')}} BTC
+                                        </td>
+                                        <td class="sum_btc text-center"
+                                            ng-class="{green: $ctrl.getChange(coin.symbol), red: !$ctrl.getChange(coin.symbol)}">
+                                            {{$ctrl.sum($index, 'btc')}} BTC
+                                        </td>
+                                        <td class="sum_currency text-center"
+                                            ng-class="{green: $ctrl.getChange(coin.symbol), red: !$ctrl.getChange(coin.symbol)}">
+                                            {{$ctrl.sum($index, $ctrl.storage.settings.currency)}}
+                                        </td>
+                                        <td class="actions text-right">
+                                        <span class="icon-chart"
+                                              title="Chart"
+                                              ng-click="$ctrl.toggleChart($index)"></span>
+                                            <span class="icon-edit-modify-streamline"
+                                                  title="Edit"
+                                                  ng-click="$ctrl.editCoin($index)"></span>
+                                            <span class="icon-delete-garbage-streamline"
+                                                  title="Remove"
+                                                  ng-click="$ctrl.removeCoin($index)"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="7" class="td-wrapper">
+                                            <div class="chart" id="chart_{{$index}}"></div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <!-- No coins tracking message -->
+                    <div ng-show="$ctrl.storage.coins.length == 0" class="text-center no-coins">
+                        Zero coins tracking.
+                        <span class="link" ng-click="$ctrl.addCoin()">Add first!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <app-footer></app-footer>
+    </div>
+    <!-- Loading screen -->
+    <div class="loading colorful" ng-show="!$ctrl.loaded">
+        <div>
+            <p>{{$ctrl.loadingMessage}}</p>
+            <img src="img/loading.svg" width="256" height="32">
+        </div>
+    </div>
+</div>

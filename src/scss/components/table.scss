@@ -1,0 +1,101 @@
+.panel-table {
+  border: none;
+  overflow: hidden;
+
+  .panel-body {
+    padding: 0;
+  }
+
+  table{
+    margin-bottom: 0;
+  }
+
+  .table th {
+    font-weight: 500;
+  }
+
+  .table td {
+    vertical-align: middle;
+  }
+
+  .table > thead th{
+    border-width: 1px;
+  }
+
+  .table > thead th,
+  .table > tbody td,
+  .table > tfoot th {
+    background: none;
+  }
+
+  .table > tbody > tr > td{
+    border: none;
+  }
+
+  .table thead th{
+    padding: 12px 10px !important;
+    font-size: 12px;
+    font-weight: 300;
+  }
+
+  .index{
+    width: 30px;
+    padding-right: 0 !important;
+  }
+
+  .symbol{
+    min-width: 200px;
+    width: 15%;
+  }
+
+  .count{
+    width: 130px;
+  }
+
+  .price_btc{
+    width: 130px;
+  }
+
+  .sum_btc{
+    min-width: 130px;
+  }
+
+  .sum_currency{
+    width: 120px;
+  }
+
+  .actions{
+    width: 105px;
+  }
+
+  .symbol img{
+    position: relative;
+    margin: -1px 3px 0 0;
+  }
+
+  .symbol .note{
+    color: $color-gray;
+  }
+
+  .actions span{
+    opacity: 0;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 5px;
+    display: inline-block;
+    transition: all .2s ease;
+    vertical-align: middle;
+  }
+
+  .actions span:hover{
+    color: green;
+  }
+
+  .actions span.icon-delete-garbage-streamline:hover{
+    color: red;
+  }
+
+  .table td:hover span[class*="icon-"]{
+    opacity: 1;
+  }
+}

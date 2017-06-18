@@ -1,0 +1,59 @@
+<div class="modal fade modal-coin">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">{{mode == 'edit' ? 'Edit Coin' : 'Add Coin'}}</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="symbol">Coin</label>
+                        <div class="col-sm-8">
+                            <input class="form-control input-sm"
+                                   id="symbol"
+                                   ng-model="coin.symbol"
+                                   type="text"
+                                   placeholder="BTC"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="amount">Amount</label>
+                        <div class="col-sm-8">
+                            <input class="form-control input-sm"
+                                   id="amount"
+                                   type="number"
+                                   min="0"
+                                   step="0.00000001"
+                                   ng-model="coin.amount"
+                                   placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="note">Note</label>
+                        <div class="col-sm-8">
+                            <select class="form-control"
+                                    id="note"
+                                    ng-model="coin.note">
+                                <option value="">Optional note</option>
+                                <option ng-repeat="note in notes" value="{{note}}">{{note}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button"
+                        class="btn btn-primary"
+                        data-dismiss="modal"
+                        ng-click="save('lol')"
+                        ng-disabled="!valid()">
+                    Save
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

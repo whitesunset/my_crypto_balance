@@ -1,0 +1,19 @@
+.summary{
+  text-align: center;
+  padding: 10px;
+  font-size: 30px;
+  font-weight: 300;
+  background: rgba(51, 95, 182, 0.18);
+
+  span{
+    padding: 0 15px;
+  }
+
+  span:first-child{
+    border-right: 1px solid $color-border-light;
+  }
+
+  small{
+    font-size: 50%;
+  }
+}

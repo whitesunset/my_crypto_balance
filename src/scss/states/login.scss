@@ -1,0 +1,62 @@
+.login {
+  padding: 200px 0 0 0;
+
+  img {
+    margin: 0 auto 50px;
+    width: 100px;
+    display: block;
+  }
+}
+
+.login form {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+  color: $color-light;
+  display: flex;
+
+  > input{
+    flex: auto;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+  }
+
+  .form-login-heading,
+  .checkbox {
+    margin-bottom: 10px;
+  }
+
+  .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .form-control:focus {
+    z-index: 2;
+  }
+
+  input[type="password"] {
+    background: $color-light;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+  }
+
+  input[type="submit"] {
+    flex: 0;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    background: $color-button;
+  }
+  input[type="submit"]:hover{
+    background: $color-button-hover;
+  }
+  input[type="submit"]:focus{
+    outline: none;
+  }
+}

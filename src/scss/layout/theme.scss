@@ -1,0 +1,74 @@
+.form-row{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+input.error{
+  background: rgba(255, 0, 0, 0.16);
+  color: red;
+}
+table tr.ui-sortable-helper{
+  display: table-row;
+  color: red;
+}
+table th{
+  padding: 5px 10px !important;
+}
+table td{
+  padding: 7px 10px !important;
+  vertical-align: middle !important;
+  font-size: 12px;
+}
+table td.green{
+  color: green;
+}
+table td.red{
+  color: red;
+}
+table td.td-wrapper{
+  padding: 0 !important;
+}
+table td input{
+  padding: 1px 5px !important;
+  border: none !important;
+  width: auto;
+  background: none !important;
+  box-shadow: none !important;
+  min-width: 50px !important;
+  float: left;
+}
+
+.inner-table{
+  width: 100%;
+}
+.placeholder{
+  background: red;
+}
+.alert{
+  padding: 7px !important;
+}
+
+.progress {
+  position: relative;
+}
+
+.progress span{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+}
+
+.chart{
+  height: 0;
+  transition: all .2s ease;
+}
+.chart.visible{
+  height: 500px;
+}
+
+.no-coins{
+  padding: 50px 0;
+}
