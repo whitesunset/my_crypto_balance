@@ -1,7 +1,7 @@
 {
   "name": "bitochek",
   "version": "1.0.0",
-  "description": "Bitochek — anonymous & safe crypto wallets tracker",
+  "description": "My Crypto Balance — anonymous & safe crypto wallets tracker",
   "main": "app.js",
   "dependencies": {
     "angular": "^1.6.1",

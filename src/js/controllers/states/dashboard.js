@@ -41,6 +41,12 @@ angular.module('app').controller('DashboardCtrl', [
                 modal.element.modal();
                 modal.close.then(function (data) {
                     $rootScope.storage.coins.push(data.coin)
+
+                    var total = $ctrl.getTotal($ctrl.storage.settings.currency)
+                    $scope.$broadcast('ticker:update', {
+                        total: total
+                    })
+
                     $ctrl.save()
                 });
             });
@@ -108,6 +114,12 @@ angular.module('app').controller('DashboardCtrl', [
                 modal.element.modal();
                 modal.close.then(function (data) {
                     $ctrl.storage.coins[$index] = data.coin
+
+                    var total = $ctrl.getTotal($ctrl.storage.settings.currency)
+                    $scope.$broadcast('ticker:update', {
+                        total: total
+                    })
+
                     $ctrl.save()
                 });
             });
