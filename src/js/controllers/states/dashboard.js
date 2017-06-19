@@ -30,24 +30,6 @@ angular.module('app').controller('DashboardCtrl', [
         var settings = null
         var coins = null
 
-        $scope.$on('coin:add', $ctrl.addCoin)
-
-        $scope.$on('settings:open', function (e, data) {
-            ModalService.showModal({
-                templateUrl: 'components/forms/settings.html',
-                controller: "FormSettingsCtrl",
-                inputs: {
-                    settings: angular.copy($ctrl.storage.settings)
-                }
-            }).then(function (modal) {
-                modal.element.modal();
-                modal.close.then(function (data) {
-                    $rootScope.storage.settings = data
-                    $ctrl.save()
-                });
-            });
-        })
-
         $scope.$watch('$ctrl.storage.coins', function () {
             $ctrl.sortCoins()
         }, true)
@@ -66,14 +48,16 @@ angular.module('app').controller('DashboardCtrl', [
             }).then(function (modal) {
                 modal.element.modal();
                 modal.close.then(function (data) {
-                    $rootScope.storage.coins.push(data.coin)
+                    if(data.coin) {
+                        $rootScope.storage.coins.push(data.coin)
 
-                    var total = $ctrl.getTotal($ctrl.storage.settings.currency)
-                    $scope.$broadcast('ticker:update', {
-                        total: total
-                    })
+                        var total = $ctrl.getTotal($ctrl.storage.settings.currency)
+                        $scope.$broadcast('ticker:update', {
+                            total: total
+                        })
 
-                    $ctrl.save()
+                        $ctrl.save()
+                    }
                 });
             });
         }
@@ -240,6 +224,24 @@ angular.module('app').controller('DashboardCtrl', [
 
             return +ticker['percent_change_1h'] > 0 ? true : false
         }
+
+        $scope.$on('coin:add', $ctrl.addCoin)
+
+        $scope.$on('settings:open', function (e, data) {
+            ModalService.showModal({
+                templateUrl: 'components/forms/settings.html',
+                controller: "FormSettingsCtrl",
+                inputs: {
+                    settings: angular.copy($ctrl.storage.settings)
+                }
+            }).then(function (modal) {
+                modal.element.modal();
+                modal.close.then(function (data) {
+                    $rootScope.storage.settings = data
+                    $ctrl.save()
+                });
+            });
+        })
 
         var index = Math.floor(Math.random() * loadingMessages.length)
         $ctrl.loadingMessage = loadingMessages[index]

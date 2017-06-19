@@ -10,12 +10,31 @@
     margin-bottom: 0;
   }
 
-  .table th {
+  table th{
+    padding: 5px 10px !important;
     font-weight: 500;
   }
-
-  .table td {
+  table td{
+    padding: 7px 2px !important;
+    vertical-align: middle !important;
+    font-size: 12px;
     vertical-align: middle;
+  }
+
+  table td.green{
+    color: green;
+  }
+
+  table td.red{
+    color: red;
+  }
+
+  table td.td-wrapper{
+    padding: 0 !important;
+  }
+
+  .inner-table{
+    width: 100%;
   }
 
   .table > thead th{
@@ -40,28 +59,29 @@
 
   .index{
     width: 30px;
+    padding-left: 10px !important;
     padding-right: 0 !important;
   }
 
   .symbol{
-    min-width: 200px;
-    width: 15%;
+    min-width: 130px;
+    width: 25%;
   }
 
   .count{
-    width: 130px;
+    width: 110px;
   }
 
   .price_btc{
-    width: 130px;
+    width: 110px;
   }
 
   .sum_btc{
-    min-width: 130px;
+    min-width: 110px;
   }
 
   .sum_currency{
-    width: 120px;
+    width: 90px;
   }
 
   .actions{
