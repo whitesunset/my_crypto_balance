@@ -30,27 +30,7 @@ angular.module('app').controller('DashboardCtrl', [
         var settings = null
         var coins = null
 
-        $scope.$on('coin:add', function () {
-            ModalService.showModal({
-                templateUrl: 'components/forms/coin.html',
-                controller: "FormCoinCtrl",
-                inputs: {
-                    coin: null
-                }
-            }).then(function (modal) {
-                modal.element.modal();
-                modal.close.then(function (data) {
-                    $rootScope.storage.coins.push(data.coin)
-
-                    var total = $ctrl.getTotal($ctrl.storage.settings.currency)
-                    $scope.$broadcast('ticker:update', {
-                        total: total
-                    })
-
-                    $ctrl.save()
-                });
-            });
-        })
+        $scope.$on('coin:add', $ctrl.addCoin)
 
         $scope.$on('settings:open', function (e, data) {
             ModalService.showModal({
@@ -75,6 +55,28 @@ angular.module('app').controller('DashboardCtrl', [
         $scope.$watch('$ctrl.storage.settings.currency', function () {
             $ctrl.updateTicker()
         }, true)
+
+        $ctrl.addCoin = function () {
+            ModalService.showModal({
+                templateUrl: 'components/forms/coin.html',
+                controller: "FormCoinCtrl",
+                inputs: {
+                    coin: null
+                }
+            }).then(function (modal) {
+                modal.element.modal();
+                modal.close.then(function (data) {
+                    $rootScope.storage.coins.push(data.coin)
+
+                    var total = $ctrl.getTotal($ctrl.storage.settings.currency)
+                    $scope.$broadcast('ticker:update', {
+                        total: total
+                    })
+
+                    $ctrl.save()
+                });
+            });
+        }
 
         $ctrl.saveSettings = function (mode) {
             $storage.set($ctrl.storage)
