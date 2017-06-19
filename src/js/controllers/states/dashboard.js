@@ -196,11 +196,12 @@ angular.module('app').controller('DashboardCtrl', [
 
         $ctrl.initChart = function (index) {
             var coin = $ctrl.storage.coins[index]
+            var symbol = coin.symbol == 'BTC' ? "BTCUSDT" : coin.symbol + "BTC"
 
             new TradingView.widget({
                 "container_id": "chart_" + index,
                 "autosize": true,
-                "symbol": "POLONIEX:" + coin.symbol + "BTC",
+                "symbol": "POLONIEX:" + symbol,
                 "interval": "60",
                 "timezone": "Etc/UTC",
                 "theme": "White",
