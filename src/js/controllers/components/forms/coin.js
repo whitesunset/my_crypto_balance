@@ -7,9 +7,11 @@ angular.module('app').controller('FormCoinCtrl', function ($scope, coin, close) 
         'BTC-E',
         'Bittrex',
         'Poloniex',
+        'Hashflare',
         'Desktop wallet',
         'Online wallet',
-        'Paper wallet'
+        'Paper wallet',
+        'Custom note'
     ]
 
     $scope.coin = coin || {

@@ -33,6 +33,30 @@ angular.module('app').service('$storage', function ($rootScope) {
 
         return result
     }
+    
+    this.export = function () {
+        var obj = JSON.parse(localStorage.getItem('storage')) || {}
+        var key = CryptoJS.SHA256(this.passphrase).toString()
+        var result = {}
+
+        result[key] = obj[key]
+
+        return btoa(JSON.stringify(result))
+    }
+
+    this.import = function (encryptedBase64) {
+        var obj = JSON.parse(atob(encryptedBase64))
+        var storage = JSON.parse(localStorage.getItem('storage')) || {}
+        var key = Object.keys(obj)[0]
+
+        if(!storage.hasOwnProperty(key)){
+            storage[key] = obj[key]
+            localStorage.setItem('storage', JSON.stringify(storage))
+            return true
+        }else {
+            return false
+        }
+    }
 
     this.set = function (data) {
         var obj = JSON.parse(localStorage.getItem('storage')) || {}

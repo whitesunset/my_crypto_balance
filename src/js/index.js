@@ -23,5 +23,6 @@ require('./components/footer')
 // Conponents controllers
 require('./controllers/components/header')
 require('./controllers/components/footer')
-require('./controllers/components/forms/settings')
 require('./controllers/components/forms/coin')
+require('./controllers/components/forms/import')
+require('./controllers/components/forms/settings')

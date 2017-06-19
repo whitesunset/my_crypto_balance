@@ -1,10 +1,18 @@
 .login {
   padding: 200px 0 0 0;
+  text-align: center;
 
   img {
     margin: 0 auto 50px;
     width: 100px;
     display: block;
+  }
+
+  p span{
+    color: $color-gray;
+    border-bottom: 1px dotted $color-gray;
+    font-size: 12px;
+    cursor: pointer;
   }
 }
 
