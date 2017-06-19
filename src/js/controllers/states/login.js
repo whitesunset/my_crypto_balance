@@ -4,7 +4,7 @@ angular.module('app').controller('LoginCtrl', function ($rootScope, $scope, $sta
     var $ctrl = this
 
     $ctrl.passphrase = ''
-    $ctrl.exportString = 'Export'
+    $ctrl.importString = 'Import'
 
     $ctrl.login = function() {
         $rootScope.logged = true
@@ -27,13 +27,13 @@ angular.module('app').controller('LoginCtrl', function ($rootScope, $scope, $sta
                 if(result){
                     $ctrl.exportString = 'Success. You can enter with your passphrase now.'
                     setTimeout(function () {
-                        $ctrl.exportString = 'Export'
+                        $ctrl.exportString = 'Import'
                         $scope.$apply()
                     }, 4000)
                 }else{
                     $ctrl.exportString = 'Fail. Storage already exists'
                     setTimeout(function () {
-                        $ctrl.exportString = 'Export'
+                        $ctrl.exportString = 'Import'
                         $scope.$apply()
                     }, 4000)
                 }
