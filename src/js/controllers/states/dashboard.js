@@ -178,7 +178,7 @@ angular.module('app').controller('DashboardCtrl', [
         }
 
         $ctrl.updateTicker = function () {
-            $http.get('https://api.coinmarketcap.com/v1/ticker/?convert=' + $ctrl.storage.settings.currency)
+            $http.get('https://api.coinmarketcap.com/v1/ticker/?limit=0&convert=' + $ctrl.storage.settings.currency)
                 .then(function (response) {
                     $ctrl.ticker = response.data
                     $ctrl.loaded = true
