@@ -129,7 +129,9 @@ angular.module('app').controller('DashboardCtrl', [
 
             if (!ticker) return 0
 
-            return ticker['price_' + currency.toLowerCase()]
+            var result = ticker['price_' + currency.toLowerCase()]
+
+            return currency == 'btc' ? result : parseFloat(result).toFixed(2)
         }
 
         $ctrl.sum = function (index, currency) {
