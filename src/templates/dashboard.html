@@ -26,13 +26,14 @@
                             <th class="count text-center">Amount</th>
                             <th class="price_btc text-center">BTC Price</th>
                             <th class="sum_btc text-center">BTC Total</th>
+                            <th class="price_currency text-center">{{$ctrl.storage.settings.currency}} Price</th>
                             <th class="sum_currency text-center">{{$ctrl.storage.settings.currency}} Total</th>
                             <th class="actions"></th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr ng-repeat="coin in $ctrl.storage.coins track by $index">
-                            <td colspan="7" class="td-wrapper">
+                            <td colspan="8" class="td-wrapper">
                                 <table class="inner-table">
                                     <tr>
                                         <td class="index">{{$index + 1}}</td>
@@ -56,6 +57,10 @@
                                         <td class="sum_btc text-center"
                                             ng-class="{green: $ctrl.getChange(coin.symbol), red: !$ctrl.getChange(coin.symbol)}">
                                             {{$ctrl.sum($index, 'btc')}} BTC
+                                        </td>
+                                        <td class="price_currency text-center"
+                                            ng-class="{green: $ctrl.getChange(coin.symbol), red: !$ctrl.getChange(coin.symbol)}">
+                                            {{$ctrl.price(coin.symbol, $ctrl.storage.settings.currency)}}
                                         </td>
                                         <td class="sum_currency text-center"
                                             ng-class="{green: $ctrl.getChange(coin.symbol), red: !$ctrl.getChange(coin.symbol)}">

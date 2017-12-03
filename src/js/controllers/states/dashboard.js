@@ -129,7 +129,7 @@ angular.module('app').controller('DashboardCtrl', [
 
             if (!ticker) return 0
 
-            return ticker['price_' + currency]
+            return ticker['price_' + currency.toLowerCase()]
         }
 
         $ctrl.sum = function (index, currency) {
