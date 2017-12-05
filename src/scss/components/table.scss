@@ -21,11 +21,11 @@
     vertical-align: middle;
   }
 
-  table td.green{
+  table .green{
     color: green;
   }
 
-  table td.red{
+  table .red{
     color: red;
   }
 
@@ -68,11 +68,19 @@
     width: 25%;
   }
 
+  .table thead th.symbol{
+    padding-left: 2px !important;
+  }
+
   .count{
     width: 110px;
   }
 
   .price_btc{
+    width: 110px;
+  }
+
+  .bought_price{
     width: 110px;
   }
 

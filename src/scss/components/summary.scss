@@ -4,6 +4,15 @@
   font-size: 30px;
   font-weight: 300;
   background: rgba(51, 95, 182, 0.18);
+  position: relative;
+
+  .counter{
+    position: absolute;
+    top: 24px;
+    left: 32px;
+    color: #5f5e5e;
+    font-size: 12px;
+  }
 
   span{
     padding: 0 15px;

@@ -8,6 +8,9 @@
                 <div class="panel-body">
                     <!-- Summary -->
                     <div class="summary" ng-show="$ctrl.storage.coins.length > 0">
+                        <div class="counter">
+                            Next update in {{$ctrl.getCounter()}}
+                        </div>
                         <span>
                             {{$ctrl.getTotal('btc')}}
                             <small>BTC</small>
@@ -24,6 +27,7 @@
                             <th class="index">#</th>
                             <th class="symbol">Coin</th>
                             <th class="count text-center">Amount</th>
+                            <th class="bought_price text-center">Bought at</th>
                             <th class="price_btc text-center">BTC Price</th>
                             <th class="sum_btc text-center">BTC Total</th>
                             <th class="price_currency text-center">{{$ctrl.storage.settings.currency}} Price</th>
@@ -33,7 +37,7 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat="coin in $ctrl.storage.coins track by $index">
-                            <td colspan="8" class="td-wrapper">
+                            <td colspan="9" class="td-wrapper">
                                 <table class="inner-table">
                                     <tr>
                                         <td class="index">{{$index + 1}}</td>
@@ -45,10 +49,16 @@
                                                  alt="{{coin.id | capitalize}}">
                                         </span>
                                             {{coin.symbol}}
+                                            <span ng-class="{green: $ctrl.getDifference(coin) > 0, red: $ctrl.getDifference(coin) < 0}" ng-if="$ctrl.getDifference(coin)" class="difference">
+                                                (<span ng-if="$ctrl.getDifference(coin) > 0">+</span>{{$ctrl.getDifference(coin)}}%)
+                                            </span>
                                             <span ng-if="coin.note" class="note">({{coin.note}})</span>
                                         </td>
                                         <td class="count text-center">
                                             {{coin.amount}}
+                                        </td>
+                                        <td class="bought_price text-center">
+                                            {{coin.bought_price}}
                                         </td>
                                         <td class="price_btc text-center"
                                             ng-class="{green: $ctrl.getChange(coin.symbol), red: !$ctrl.getChange(coin.symbol)}">

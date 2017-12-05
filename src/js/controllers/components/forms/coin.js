@@ -17,6 +17,7 @@ angular.module('app').controller('FormCoinCtrl', function ($scope, coin, close) 
     $scope.coin = coin || {
         symbol: '',
         amount: '',
+        bought_price: '',
         id: '',
         note: ''
     }
