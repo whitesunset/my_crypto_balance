@@ -16,7 +16,7 @@
                             <small>BTC</small>
                         </span>
                         <span>
-                            {{('' + $ctrl.getTotal($ctrl.storage.settings.currency)).toLocaleString()}}
+                            {{$ctrl.formatString('' + $ctrl.getTotal($ctrl.storage.settings.currency))}}
                             <small>{{$ctrl.storage.settings.currency}}</small>
                         </span>
                     </div>

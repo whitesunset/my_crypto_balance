@@ -60,6 +60,10 @@ angular.module('app').controller('DashboardCtrl', [
       $ctrl.updateTicker()
     }, true)
 
+    $ctrl.formatString = function(string){
+      return string.replace(/\B(?=(\d{3})+\b)/g, " ")
+    }
+
     $ctrl.addCoin = function () {
       ModalService.showModal({
         templateUrl: 'components/forms/coin.html',
@@ -158,8 +162,11 @@ angular.module('app').controller('DashboardCtrl', [
 
     $ctrl.getDifference = function (coin) {
       var price = $ctrl.price(coin.symbol, 'btc')
-      var difference = parseFloat(100 * +price / coin.bought_price - 100).toFixed(2)
-      return difference
+      var difference = parseFloat(100 * +price / coin.bought_price - 100)
+
+      if(!isFinite(difference)) return false
+
+      return difference.toFixed(2)
     }
 
     $ctrl.sum = function (index, currency) {
