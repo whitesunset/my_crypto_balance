@@ -222,7 +222,7 @@ angular.module('app').controller('DashboardCtrl', [
           convert: $ctrl.storage.settings.currency
         },
         headers: {
-          'X-CMC_PRO_API_KEY': 'e8cb369b-241e-448e-9962-c747e1db1773'
+          'X-CMC_PRO_API_KEY': ''
         }
       })
         .then(function (response) {
