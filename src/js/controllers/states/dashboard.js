@@ -215,7 +215,16 @@ angular.module('app').controller('DashboardCtrl', [
     }
 
     $ctrl.updateTicker = function () {
-      $http.get('https://api.coinmarketcap.com/v1/ticker/?limit=0&convert=' + $ctrl.storage.settings.currency)
+      $http.get('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest', {
+        params: {
+          start: 1,
+          limit: 5000,
+          convert: $ctrl.storage.settings.currency
+        },
+        headers: {
+          'X-CMC_PRO_API_KEY': 'e8cb369b-241e-448e-9962-c747e1db1773'
+        }
+      })
         .then(function (response) {
           $ctrl.ticker = response.data
           $ctrl.loaded = true
