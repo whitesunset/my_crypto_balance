@@ -60,7 +60,7 @@ angular.module('app').controller('DashboardCtrl', [
       $ctrl.updateTicker()
     }, true)
 
-    $ctrl.formatString = function(string){
+    $ctrl.formatString = function (string) {
       return string.replace(/\B(?=(\d{3})+\b)/g, " ")
     }
 
@@ -144,18 +144,20 @@ angular.module('app').controller('DashboardCtrl', [
     }
 
     $ctrl.price = function (symbol, currency) {
+      var ticker
+
       if ($ctrl.ticker.length === 0) return 0
 
       var coin = $ctrl.storage.coins.find(function (item) {
         return item.symbol == symbol
       })
-      var ticker = $ctrl.ticker.find(function (item) {
-        return item.symbol == coin.symbol
-      })
+      for (var key in $ctrl.ticker.data) {
+        if ($ctrl.ticker.data[key].symbol == coin.symbol) ticker = $ctrl.ticker.data[key]
+      }
 
       if (!ticker) return 0
 
-      var result = ticker['price_' + currency.toLowerCase()]
+      var result = ticker['quotes'][currency].price
 
       return parseFloat(+result).toFixed(8)
     }
@@ -164,19 +166,21 @@ angular.module('app').controller('DashboardCtrl', [
       var price = $ctrl.price(coin.symbol, 'btc')
       var difference = parseFloat(100 * +price / coin.bought_price - 100)
 
-      if(!isFinite(difference)) return false
+      if (!isFinite(difference)) return false
 
       return difference.toFixed(2)
     }
 
     $ctrl.sum = function (index, currency) {
+      var ticker
       if ($ctrl.ticker.length === 0) return 0
 
       var accuracy = currency == 'btc' ? 8 : 2
       var coin = $ctrl.storage.coins[index]
-      var ticker = $ctrl.ticker.find(function (item) {
-        return item.symbol == coin.symbol
-      })
+
+      for (var key in $ctrl.ticker.data) {
+        if ($ctrl.ticker.data[key].symbol == coin.symbol) ticker = $ctrl.ticker.data[key]
+      }
 
       if (!ticker) return 0
 
@@ -215,16 +219,7 @@ angular.module('app').controller('DashboardCtrl', [
     }
 
     $ctrl.updateTicker = function () {
-      $http.get('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest', {
-        params: {
-          start: 1,
-          limit: 5000,
-          convert: $ctrl.storage.settings.currency
-        },
-        headers: {
-          'X-CMC_PRO_API_KEY': ''
-        }
-      })
+      $http.get('https://api.coinmarketcap.com/v2/ticker/?limit=0&convert=' + $ctrl.storage.settings.currency)
         .then(function (response) {
           $ctrl.ticker = response.data
           $ctrl.loaded = true
@@ -261,11 +256,13 @@ angular.module('app').controller('DashboardCtrl', [
     }
 
     $ctrl.getChange = function (symbol) {
-      if ($ctrl.ticker.length === 0) return true
+      var ticker
 
-      var ticker = $ctrl.ticker.find(function (item) {
-        return item.symbol == symbol
-      })
+      if ($ctrl.ticker.data.length === 0) return true
+
+      for (var key in $ctrl.ticker.data) {
+        if ($ctrl.ticker.data[key].symbol == symbol) ticker = $ctrl.ticker.data[key]
+      }
 
       if (!ticker) return false
 
